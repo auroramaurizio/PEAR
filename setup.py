@@ -1,7 +1,7 @@
 from setuptools import setup
 
 description = (
-    "**PEAR** (Process Evolution Analysis Report) is a simple Python program that takes advantage of **Petri nets** and"
+    "**PEAR** (Petri-net Evolution Analysis Report) is a simple Python program that takes advantage of **Petri nets** and"
     "logical conditions to develop a screening tool aimed at studying the effect of"
     "perturbations in interconnected systems."
 )

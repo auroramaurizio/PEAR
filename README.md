@@ -1,4 +1,4 @@
-**PEAR**: Process Evolution Analysis Report
+**PEAR**: Petri-net Evolution Analysis Report
 
 ## Table of contents
 
