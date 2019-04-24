@@ -75,7 +75,7 @@ Remove place:  A
 Deleted places:  {'D', 'H', 'C', 'A', 'E'}
  
 List of remaining places:  {'G', 'B', 'F'}
-```bash
+```
 
 
 ### Figures
@@ -122,7 +122,7 @@ Deleted places:  {'D', 'C', 'H', 'E', 'A', 'G'}
  
 Remaining places:  {'F', 'B'}
 
-```bash
+```
 
 ### Figures
 
