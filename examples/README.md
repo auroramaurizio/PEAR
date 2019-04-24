@@ -126,14 +126,14 @@ Remaining places:  {'F', 'B'}
 
 ### Figures
 
-![](../output_files/intact_PN_3.png)
+![](output_files/intact_PN_3.png)
 
 __Figure3__: Intact system representation. Places are represented by
 circles, transitions by rectangles and arcs by arrows.
 By convention, **ORPHAN** condition places (A, B, F) are assigned
 initial making equal to 1.
 (
-![](../output_files/damaged_PN_4.png)
+![](output_files/damaged_PN_4.png)
 
 __Figure4__: Damaged system representation. Places are represented by
 circles, transitions by rectangles and arcs by arrows. Places involved 
