@@ -13,6 +13,7 @@ setup(name='pear',
 	  url='https://github.com/auroramaurizio/PEAR',
 	  author='Aurora Maurizio',
 	  author_email='auroramaurizio1@gmail.com',
+          keywords='petri-net logical-conditions',
 	  license='MIT',
 	  packages=['pear'],
 	  install_requires=[
