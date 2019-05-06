@@ -140,19 +140,13 @@ class GeneralNet():
         cond = list(self.n.post(place))
 
         if cond:
-            if "OR" not in cond[0]:
-                predecessors = set(self.n.pre(cond))
-                if "AND" in cond[0]:
-                    if len(predecessors.intersection(self.places_to_delete)) <= 1:
-                        for i in predecessors:
-                            if Marking({i: MultiSet([0])}):
-                                self.n.add_marking(Marking({i:MultiSet([1])}))
-                        modes_l = self.n.transition(cond[0]).modes()
-                        self.n.transition(cond[0]).fire(modes_l[0])
-                        successors = list(self.n.post(cond[0]))
-                        for next in set(successors) - visited:
-                            self.places_to_delete.add(next)
-                            self.rm_places(next, visited)
+            predecessors = set(self.n.pre(cond))
+            if "OR" in cond[0]:
+                print("predecessors",predecessors)
+                print("self.places_to_delete",self.places_to_delete)
+                print(predecessors.intersection(self.places_to_delete))
+                if len(predecessors) > len(self.places_to_delete):
+                    self.n.remove_place(place)
                 else:
                     for i in predecessors:
                         if Marking({i: MultiSet([0])}):
@@ -163,6 +157,27 @@ class GeneralNet():
                     for next in set(successors) - visited:
                         self.places_to_delete.add(next)
                         self.rm_places(next, visited)
+            elif "AND" in cond[0]:
+                if len(predecessors.intersection(self.places_to_delete)) <= 1:
+                    for i in predecessors:
+                        if Marking({i: MultiSet([0])}):
+                            self.n.add_marking(Marking({i:MultiSet([1])}))
+                    modes_l = self.n.transition(cond[0]).modes()
+                    self.n.transition(cond[0]).fire(modes_l[0])
+                    successors = list(self.n.post(cond[0]))
+                    for next in set(successors) - visited:
+                        self.places_to_delete.add(next)
+                        self.rm_places(next, visited)
+            else:
+                for i in predecessors:
+                    if Marking({i: MultiSet([0])}):
+                        self.n.add_marking(Marking({i:MultiSet([1])}))
+                modes_l = self.n.transition(cond[0]).modes()
+                self.n.transition(cond[0]).fire(modes_l[0])
+                successors = list(self.n.post(cond[0]))
+                for next in set(successors) - visited:
+                    self.places_to_delete.add(next)
+                    self.rm_places(next, visited)
 
             return visited
 
@@ -177,17 +192,12 @@ class GeneralNet():
 
         self.places_to_delete = set()
 
-
         for place in places:
             if place in self.n:
                 successors_c = list(sorted(self.n.post(place), key=str))
                 if successors_c:
-                    for successor in successors_c:
-                        if "OR" in successor:
-                            self.places_to_delete.add(place)
-                        elif "OR" not in successor:
-                            self.places_to_delete.add(place)
-                            self.rm_places(place)
+                    self.places_to_delete.add(place)
+                    self.rm_places(place)
                 else:
                     self.places_to_delete.add(place)
 
@@ -217,5 +227,5 @@ if __name__ == '__main__':
     g.add_transitions()
     g.add_input()
     g.add_output()
-    #g.delete_places(['A'])
-    g.delete_places(['H','G'])
+    #g.delete_places(['D'])
+    g.delete_places(['D','F'])
